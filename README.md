@@ -1,20 +1,25 @@
 # SentiCube - Modular IoT Monitoring Cube
 
-SentiCube is a **modular, compact IoT device** designed to monitor motion, orientation, distance, environmental conditions and sound. It works out-of-the-box in **local mode** and can optionally connect to a cloud dashboard (ThingsBoard) for **remote monitoring** and logging.
+SentiCube is a **modular, compact IoT device** designed to monitor motion, orientation, distance, environmental conditions and sound. It works out-of-the-box in **local mode** and can optionally connect to a cloud dashboard (ThingsBoard) for **remote monitoring and logging**.
 
 ---
 
 ## Features
 
+* **ESP32-U with external antenna** for reliable Wi-Fi connectivity
 * **Distance measurement:** VL53L0X / VL53L1X Time-of-Flight (ToF) sensor
 * **Orientation / motion:** MPU-6050 (Gyroscope + Accelerometer)
 * **Magnetic heading:** QMC5883P Magnetometer (Compass)
 * **Environmental sensing:** AHT10 Temperature & Humidity sensor
 * **Sound detection:** INMP441 I2S microphone
-* **ESP32-U with external antenna** for reliable Wi-Fi connectivity
 * **Local web interface** served by ESP32 for setup & monitoring
 * **Wi-Fi provisioning** using **Wi-FiManager** (ESP32 hotspot)
 * **Optional cloud integration** with ThingsBoard
+* **Hybrid wake logic:**
+
+  * Wakes on motion, sound, or distance events
+  * Periodic heartbeat every **10 to 15 minutes** to update readings
+  * **Offline logging** to SD card if cloud or Wi-Fi is unavailable
 
 ---
 
@@ -47,27 +52,30 @@ SentiCube can optionally stream data to **ThingsBoard**:
 
 ## Sensors & Connections
 
-| Sensor / Component    | Function                  | Connection Notes                      |
-| --------------------- | ------------------------- | ------------------------------------- |
-| **ESP32-U**           | Microcontroller & Wi-Fi   | External antenna for better reception |
-| **VL53L0X / VL53L1X** | Time-of-Flight distance   | I2C                                   |
-| **INMP441**           | I2S microphone            | I2S interface                         |
-| **MPU-6050 (GY-521)** | Gyroscope + Accelerometer | I2C, uses INT for motion interrupts   |
-| **QMC5883P**          | Magnetometer / Compass    | I2C                                   |
-| **AHT10**             | Temperature & Humidity    | I2C                                   |
+| Sensor / Component       | Function                  | Connection Notes                      |
+| ------------------------ | ------------------------- | ------------------------------------- |
+| **ESP32-U**              | Microcontroller & Wi-Fi   | External antenna for better reception |
+| **VL53L0X / VL53L1X**    | Time-of-Flight distance   | I2C                                   |
+| **INMP441**              | I2S microphone            | I2S interface                         |
+| **MPU-6050 (GY-521)**    | Gyroscope + Accelerometer | I2C, uses INT for motion interrupts   |
+| **QMC5883P**             | Magnetometer / Compass    | I2C                                   |
+| **AHT10**                | Temperature & Humidity    | I2C                                   |
+| **18650 Battery Shield** | Rechargeable Battery Pack | VIN and GND                           |
+| **MicroSD Module**       | Offline data logging      | SPI interface, stores queued events   |
 
 ---
 
 ## Dependencies / Libraries
 
 * **ESP32 Board definitions** for Arduino IDE
-* **Adafruit VL53L0X / VL53L1X Library** - not final
+* **Adafruit VL53L0X / VL53L1X Library**
 * **Adafruit MPU6050 Library**
 * **QMC5883P Magnetometer Library**
 * **AHT10 Library**
 * **Wi-FiManager** - for hotspot-based Wi-Fi provisioning
 * **PubSubClient / HTTPClient** - for ThingsBoard MQTT/HTTP publishing
 * **I2S Library** - for INMP441 microphone
+* **SD / SPI Library** - for offline logging
 
 ---
 
@@ -85,14 +93,13 @@ SentiCube can optionally stream data to **ThingsBoard**:
 1. **Obtain a ThingsBoard token** from the admin (project owner).
 2. Connect to SentiCube hotspot → open local web page.
 3. Enter:
-
    * Wi-Fi SSID & password
    * Cloud token
 4. Cube stores credentials and token → reboots
 5. Cube automatically connects to home Wi-Fi and **starts streaming telemetry** to ThingsBoard.
 6. Log in to ThingsBoard dashboard → monitor your cube remotely.
 
-> Optional: cube supports multiple sensors streaming simultaneously with thresholds, events and logging.
+> Optional: cube supports multiple sensors streaming simultaneously with thresholds, events and logging. Offline events are stored on the SD card and uploaded when connectivity is restored.
 
 ---
 
@@ -109,7 +116,9 @@ SentiCube can optionally stream data to **ThingsBoard**:
   "mag_x": 123,
   "mag_y": -45,
   "mag_z": 67,
-  "sound_level": 56
+  "sound_level": 56,
+  "event_logged": true,
+  "last_upload_status": "pending"
 }
 ```
 
@@ -120,8 +129,8 @@ SentiCube can optionally stream data to **ThingsBoard**:
 * Cube can operate **fully offline** using local web interface.
 * Cloud mode requires Wi-Fi and valid token.
 * Ensure **I2C addresses don't conflict** if using multiple modules on same bus.
-* Use **EEPROM / SPIFFS** to persist Wi-Fi credentials and cloud token.
 * Use **INT pins** from MPU6050 or ToF sensor for motion-triggered events.
+* Use **EEPROM / SPIFFS** or SD card to persist Wi-Fi credentials, cloud token and **queued events for delayed upload**.
 
 ---
 
