@@ -8,10 +8,17 @@ This branch is used to test each SentiCube sensor individually before integratio
 
 Verify that every sensor works correctly on its own:
 
+<<<<<<< HEAD
 - stable readings
 - correct wiring (I2C / SPI)
 - no crashes
 - SD JSON logging
+=======
+* stable readings
+* correct wiring (I2C / SPI / I2S)
+* no crashes
+* SD JSON logging
+>>>>>>> eaebcdcd5cbdbbdaa96defceea328eb8c5cb1138
 
 ---
 
@@ -37,10 +44,8 @@ vl53_test/
 aht10_test/
 mpu6050_test/
 qmc5883_test/
-mic_test/
+inmp441_test/
 lora_test/
-sd_test/
-wifi_test/
 ```
 
 ---
