@@ -37,10 +37,8 @@ vl53_test/
 aht10_test/
 mpu6050_test/
 qmc5883_test/
-mic_test/
+inmp441_test/
 lora_test/
-sd_test/
-wifi_test/
 ```
 
 ---
