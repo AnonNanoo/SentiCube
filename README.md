@@ -105,11 +105,12 @@ SentiCube supports an optional **secondary “Mirror Cube”** connected via LoR
 * **Adafruit VL53L0X / VL53L1X Library**
 * **Adafruit MPU6050 Library**
 * **QMC5883P Magnetometer Library**
-* **AHT10 Library**
-* **Wi-FiManager** - for hotspot-based Wi-Fi provisioning
+* **Adafruit AHT10 Library**
+* **WiFiManager** - for hotspot-based Wi-Fi provisioning
 * **PubSubClient / HTTPClient** - for ThingsBoard MQTT/HTTP publishing
-* **I2S Library** - for INMP441 microphone
-* **SD / SPI Library** - for offline logging
+* **I2S Library** - for INMP441 microphone (sound library)
+* **SD / SPI Library**
+* **Sandeep Mistry LoRa library** 
 
 ---
 
