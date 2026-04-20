@@ -23,6 +23,19 @@ SentiCube is a **modular, compact IoT device** designed to monitor motion, orien
 
 ---
 
+## Secondary Cube (LoRa Backup)
+
+SentiCube supports an optional **secondary cube** that communicates with the main unit using **LoRa**. This backup cube operates within the same room (or nearby) and sends sensor data to the **primary cube**, which then handles Wi-Fi/cloud communication.
+
+* **Primary cube:** Wi-Fi + ThingsBoard + LoRa receiver
+* **Secondary cube:** LoRa transmitter (can run without Wi-Fi)
+* Enables **redundancy, extended coverage, and offline resilience**
+
+> If the primary cube loses Wi-Fi, data from both cubes is stored locally and uploaded once connectivity is restored.
+> Even if the primary cube is destroyed, the secondary cube will persist the data.
+
+---
+
 ## How It Works
 
 ### 1. Local Mode (Plug-and-Play)
@@ -50,18 +63,36 @@ SentiCube can optionally stream data to **ThingsBoard**:
 
 ---
 
+### 3. LoRa Mirror Mode (Optional Backup Unit)
+
+SentiCube supports an optional **secondary “Mirror Cube”** connected via LoRa for redundancy and local visibility:
+
+1. The **primary cube continues normal operation** (local + cloud mode).
+2. In parallel, the primary cube **sends a copy of all telemetry data via LoRa**.
+3. The **mirror cube only receives this data** (it does not generate or transmit its own data).
+4. The mirror cube can:
+
+   * Display received sensor values locally
+   * Store data as a backup log (optional SD card)
+   * Act as a **fallback monitoring point** if cloud or Wi-Fi is unavailable
+
+> **Note:** The mirror cube is fully optional and not required for system operation. It functions purely as a **redundant receiver for extended reliability and local backup visibility**.
+
+---
+
 ## Sensors & Connections
 
 | Sensor / Component       | Function                  | Connection Notes                      |
 | ------------------------ | ------------------------- | ------------------------------------- |
 | **ESP32-U**              | Microcontroller & Wi-Fi   | External antenna for better reception |
-| **VL53L0X / VL53L1X**    | Time-of-Flight distance   | I2C                                   |
+| **VL53L0X / VL53L1X**    | Time-of-Flight distance   | I2C, recommend 3.3v                   |
 | **INMP441**              | I2S microphone            | I2S interface                         |
 | **MPU-6050 (GY-521)**    | Gyroscope + Accelerometer | I2C, uses INT for motion interrupts   |
 | **QMC5883P**             | Magnetometer / Compass    | I2C                                   |
 | **AHT10**                | Temperature & Humidity    | I2C                                   |
 | **18650 Battery Shield** | Rechargeable Battery Pack | VIN and GND                           |
 | **MicroSD Module**       | Offline data logging      | SPI interface, stores queued events   |
+| **SX1278 RA-02 (LoRa Module)** | Wireless communication (Primary ↔ Mirror Cube) | SPI interface, 3.3V only, used for LoRa mirror/backup link |
 
 ---
 
