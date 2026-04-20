@@ -9,7 +9,7 @@ This branch is used to test each SentiCube sensor individually before integratio
 Verify that every sensor works correctly on its own:
 
 * stable readings
-* correct wiring (I2C / SPI)
+* correct wiring (I2C / SPI / I2S)
 * no crashes
 * SD JSON logging
 
