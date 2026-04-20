@@ -8,23 +8,23 @@ This branch is used to test each SentiCube sensor individually before integratio
 
 Verify that every sensor works correctly on its own:
 
-* stable readings
-* correct wiring (I2C / SPI)
-* no crashes
-* SD JSON logging
+- stable readings
+- correct wiring (I2C / SPI)
+- no crashes
+- SD JSON logging
 
 ---
 
 ## Sensors tested here (tested sensors / modules will be marked with an "X")
 
-* VL53L0X / VL53L1X (distance) 
-* AHT10 (temperature & humidity)
-* MPU-6050 (motion)
-* QMC5883P (compass)
-* INMP441 (microphone)
-* SX1278 LoRa module
-* MicroSD module
-* WiFiManager setup
+- VL53L0X (distance) X
+- AHT10 (temperature & humidity)
+- MPU-6050 (motion)
+- QMC5883P (compass)
+- INMP441 (microphone)
+- SX1278 LoRa module
+- MicroSD module X
+- WiFiManager setup X
 
 ---
 
@@ -32,7 +32,7 @@ Verify that every sensor works correctly on its own:
 
 Each sensor has its own sketch:
 
-```text id="s1"
+```text
 vl53_test/
 aht10_test/
 mpu6050_test/
@@ -49,7 +49,7 @@ wifi_test/
 
 All tests save JSON data to SD (structure not final):
 
-```json id="s2"
+```json
 { "sensor": "VL53", "value": 1200 }
 ```
 
