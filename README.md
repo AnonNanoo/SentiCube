@@ -7,25 +7,17 @@ This branch is used to test each SentiCube sensor individually before integratio
 ## Goal
 
 Verify that every sensor works correctly on its own:
-
-<<<<<<< HEAD
-- stable readings
-- correct wiring (I2C / SPI)
-- no crashes
-- SD JSON logging
-=======
 * stable readings
 * correct wiring (I2C / SPI / I2S)
 * no crashes
 * SD JSON logging
->>>>>>> eaebcdcd5cbdbbdaa96defceea328eb8c5cb1138
 
 ---
 
 ## Sensors tested here (tested sensors / modules will be marked with an "X")
 
 - VL53L0X (distance) X
-- AHT10 (temperature & humidity)
+- AHT10 (temperature & humidity) X
 - MPU-6050 (motion)
 - QMC5883P (compass)
 - INMP441 (microphone)
