@@ -95,7 +95,7 @@ SentiCube supports an optional **secondary “Mirror Cube”** connected via LoR
 | **MicroSD Module**       | Offline data logging      | SPI interface, stores queued events   |
 | **SX1278 RA-02 (LoRa Module)** | Wireless communication (Primary ↔ Mirror Cube) | SPI interface, 3.3V only, used for LoRa mirror/backup link |
 | **10 µF capacitor**      | Stabilize Voltage         | VCC and GND before the LoRa Module        |
-| **500 µF capacitor**     | Stabilize Voltage         | VCC and GND after the battery pack
+| **680 µF capacitor**     | Stabilize Voltage         | VCC and GND after the battery pack
 
 
 ---
