@@ -18,8 +18,8 @@ Verify that every sensor works correctly on its own:
 
 - VL53L0X (distance) X
 - AHT10 (temperature & humidity) X
-- MPU-6050 (motion)
-- QMC5883P (compass)
+- MPU-6050 (motion)   X
+- QMC5883P (compass)   X
 - INMP441 (microphone)
 - SX1278 LoRa module
 - MicroSD module X
