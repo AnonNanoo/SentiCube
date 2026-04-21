@@ -20,8 +20,8 @@ Verify that every sensor works correctly on its own:
 - AHT10 (temperature & humidity) X
 - MPU-6050 (motion)   X
 - QMC5883P (compass)   X
-- INMP441 (microphone)
-- SX1278 LoRa module
+- INMP441 (microphone)   X
+- SX1278 LoRa module   TBD at some point (not a priority)
 - MicroSD module X
 - WiFiManager setup X
 
