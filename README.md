@@ -1,6 +1,6 @@
-# Sensor Testing (SentiCube)
+# Sensor Testing (SentiCube and MirrorCube)
 
-This branch is used to test each SentiCube sensor individually before integration.
+This branch is used to test each SentiCube sensor individually before integration, then finally bring it all together.
 
 ---
 
@@ -10,7 +10,7 @@ Verify that every sensor works correctly on its own:
 * stable readings
 * correct wiring (I2C / SPI / I2S)
 * no crashes
-* SD JSON logging
+* SD txt logging (better for IoT projects)
 
 ---
 
@@ -21,7 +21,7 @@ Verify that every sensor works correctly on its own:
 - MPU-6050 (motion)   X
 - QMC5883P (compass)   X
 - INMP441 (microphone)   X
-- SX1278 LoRa module   TBD at some point (not a priority)
+- SX1278 LoRa module   X
 - MicroSD module X
 - WiFiManager setup X
 
@@ -46,7 +46,7 @@ lora_test/
 
 All tests save JSON data to SD (structure not final):
 
-```json
+```text
 { "sensor": "VL53", "value": 1200 }
 ```
 
@@ -58,10 +58,9 @@ All tests save JSON data to SD (structure not final):
 2. Check Serial output
 3. check SD logs
 4. Fix issues if needed
-5. Move to dev branch eventually
 
 ---
 
 ## ⚠️ Note
 
-This branch is only for testing, not final system code.
+This branch is only for testing / prototyping.
