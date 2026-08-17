@@ -1,5 +1,7 @@
 # SentiCube - Modular IoT Monitoring Cube 
-## (Yeah the frontend is vibe-coded, didn't have enough time)
+> **(Yeah the frontend is vibe-coded, didn't have enough time)**  
+> **Look into dev branch for sketches / code**
+
 Watch. Preserve. Transmit.
 
 SentiCube is a **modular, compact IoT device** designed to monitor motion, orientation, distance, environmental conditions and sound. It works out-of-the-box in **local mode** and can optionally connect to a cloud dashboard (ThingsBoard) for **remote monitoring and logging**.
